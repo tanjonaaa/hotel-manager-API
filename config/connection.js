@@ -1,6 +1,5 @@
 // import postgres package
-import pkg from "pg";
-const { Pool } = pkg;
+import { Pool } from "pg";
 
 // import "variable d'environement"
 import { config } from "dotenv";

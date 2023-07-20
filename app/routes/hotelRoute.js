@@ -1,8 +1,7 @@
-import pkg from "express";
-const express = pkg;
+import express from "express";
 export const hotelRouter = express.Router();
 
 hotelRouter.get('/', (req, res) => {
-    res.sendStatus(200);
-    res.end('Route to get all hotels');
+    res.status(200).send({"axel" : "test"});
+    console.log("test other");
 })
