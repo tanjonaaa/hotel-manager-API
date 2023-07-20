@@ -8,3 +8,8 @@ config();
 
 // Connection to database
 const pool = new Pool(process.env.db);
+
+// All psql command
+export const selectAllHotels = (request, response) => {
+    pool.query('SELECT * FROM hotel;')
+};
