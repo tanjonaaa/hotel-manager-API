@@ -1,9 +1,9 @@
 //Imports
-import pkg from "express";
+import express from "express";
 import {hotelRouter} from "./app/routes/hotelRoute.js";
+import cors from "cors";
 
 //Variable declaration
-const express = pkg;
 const app = express();
 
 //Middlewares
