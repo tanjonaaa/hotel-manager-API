@@ -1,15 +1,17 @@
-// importation of connection to db
-import { selectAllHotels } from "./config/connection";
-
-// initialisation of express
+//Imports
 import pkg from "express";
+import {hotelRouter} from "./app/routes/hotelRoute.js";
+
+//Variable declaration
 const express = pkg;
 const app = express();
 
-// include CORS origin
-// utile for a express app
+//Middlewares
 app.use(express.json());
 app.use(cors());
+
+//Routers
+app.use('/hotels', hotelRouter);
 
 
 // port listen
