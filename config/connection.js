@@ -10,5 +10,9 @@ const pool = new Pool(process.env.db);
 
 // All psql command
 export const selectAllHotels = (request, response) => {
-    pool.query('SELECT * FROM hotel;')
+    pool.query('SELECT * FROM hotel;', (err, result)=>{
+        if (err) 
+            throw err;
+        response.send(result);
+    })
 };
