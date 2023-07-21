@@ -1,5 +1,5 @@
 import express from "express";
 export const hotelRouter = express.Router();
-import conn from "../../config/connection.js"
+import {selectAllHotels} from "../../config/connection.js"
 
-hotelRouter.get('/', (req, res) => conn.selectAllHotels)
+hotelRouter.get('/', (req, res) => selectAllHotels(req, res));

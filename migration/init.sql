@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS rasta_hotel;
-CREATE DATABASE rasta_hotel;
+CREATE DATABASE ets_hotel;
 
-\c rasta_hotel
+\c ets_hotel;
 
 CREATE TABLE role (
     id SERIAL PRIMARY KEY,
