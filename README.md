@@ -4,11 +4,10 @@ Repository of the back-end of hotel-manager by the dreamTeam
 # to start
  - create **.env** file, with
  ```
- db : {
-    user : [ postgres user ],
-    host: 'localhost',
-    database: [ database name ],
-    password: [ postgres password ],
-    port: [ port ],
-}
+DB_NAME=[database_name]
+DB_HOST=[database_host]
+DB_USER=[database_user]
+DB_PASS=[database_password]
+DB_PORT=[database_port]
+expressPORT=[application_port]
  ```
