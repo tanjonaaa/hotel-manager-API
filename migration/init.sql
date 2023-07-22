@@ -120,5 +120,3 @@ CREATE TABLE IF NOT EXISTS reservation (
     CONSTRAINT room_or_conference_not_null CHECK (room_id IS NOT NULL OR conference_room_id IS NOT NULL)
 );
 
-ALTER TABLE hotel ADD COLUMN photo varchar(300);
-ALTER TABLE room ADD COLUMN photo varchar(300);
