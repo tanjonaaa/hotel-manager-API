@@ -119,3 +119,4 @@ CREATE TABLE IF NOT EXISTS reservation (
     CONSTRAINT timestamp_check CHECK (start_time > CURRENT_TIMESTAMP AND end_time > start_time),
     CONSTRAINT room_or_conference_not_null CHECK (room_id IS NOT NULL OR conference_room_id IS NOT NULL)
 );
+

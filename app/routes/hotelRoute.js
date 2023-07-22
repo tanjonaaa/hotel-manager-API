@@ -1,5 +1,8 @@
 import express from "express";
+//Controller methods import
+import {getAllHotels, getOneHotelByItsId} from "../controller/hotelController.js";
 export const hotelRouter = express.Router();
-import {selectAllHotels} from "../../config/connection.js"
 
-hotelRouter.get('/', (req, res) => selectAllHotels(req, res));
+hotelRouter.get('/', (req, res) => getAllHotels(req, res));
+
+hotelRouter.get('/:id', (req, res) => getOneHotelByItsId(req, res));
