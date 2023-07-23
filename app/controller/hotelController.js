@@ -1,5 +1,8 @@
 //Model methods imports
-import {allHotels, oneById} from "../models/hotelModel.js";
+import {
+    allHotels, oneById
+} from "../models/hotelModel.js";
+
 export const getAllHotels = (req, res) => {
     allHotels().then((results) => {
         res.status(200).json(results);
