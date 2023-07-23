@@ -4,7 +4,7 @@ import {hotelRouter} from "./app/routes/hotelRoute.js";
 import cors from "cors";
 
 //Variable declaration
-const app = express();
+export const app = express();
 
 //Middlewares
 app.use(express.json());
