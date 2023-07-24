@@ -6,8 +6,8 @@ import {
 
 export const hotelRouter = express.Router();
 
-hotelRouter.get('/', (req, res) => getAllHotels(req, res));
+hotelRouter.get('/', getAllHotels);
 
-hotelRouter.get('/:id', (req, res) => getOneHotelByItsId(req, res));
+hotelRouter.get('/:id', getOneHotelByItsId);
 
-hotelRouter .get("/rate", (req, res) => getAllHotelsOrderByRate(req,res))
+hotelRouter .get("/rate", getAllHotelsOrderByRate);
