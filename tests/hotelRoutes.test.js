@@ -25,4 +25,17 @@ describe("Hotel Routes", () => {
         done();
       });
   });
+
+    it("should return all hotels with their cities", (done) => {
+        chai.request(app).get('/hotels/withCities')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.be.an("array");
+                expect(res.body).to.not.be.empty;
+                res.body.forEach(e => {
+                    expect(e).to.have.property("city");
+                });
+                done();
+            })
+    })
 });
