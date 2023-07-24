@@ -1,6 +1,6 @@
 //Model methods imports
 import {
-    allHotels, oneById
+    allHotels, oneById, orderByRate
 } from "../models/hotelModel.js";
 
 export const getAllHotels = (req, res) => {
@@ -18,3 +18,11 @@ export const getOneHotelByItsId = (req, res) => {
         res.status(500);
     })
 }
+
+export const getAllHotelsOrderByRate = (req, res) => {
+    oneById().then((results) => {
+        res.status(200).json(results);
+    }).catch((e) => {
+        res.status(500);
+    })
+};

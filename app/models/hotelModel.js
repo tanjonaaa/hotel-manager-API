@@ -12,3 +12,14 @@ export const oneById = async (id) => {
     const results = await pool.query('SELECT * FROM hotel WHERE id = $1', [id]);
     return results.rows;
 }
+
+//Returns a Promise containing the liste of hotels order by rate
+export const orderByRate = async () => {
+    const results = await pool.query(`
+        SELECT * FROM hotel
+            INNER JOIN rating
+            ON rating.id_hotel = hotel.id
+            ORDER BY rating.rate DESC;
+    `);
+    return results.rows;
+}
