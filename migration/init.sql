@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS rasta_hotel;
+DROP DATABASE IF EXISTS ets_hotel;
 CREATE DATABASE ets_hotel;
 
 \c ets_hotel;
