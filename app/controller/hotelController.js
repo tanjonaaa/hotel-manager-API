@@ -1,6 +1,6 @@
 //Model methods imports
 import {
-    allHotels, oneById, orderByRate
+    allHotels, oneById, orderByRate , AllCity
 } from "../models/hotelModel.js";
 
 export const getAllHotels = (req, res) => {
