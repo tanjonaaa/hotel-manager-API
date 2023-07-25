@@ -20,7 +20,7 @@ export const getOneHotelByItsId = (req, res) => {
 }
 
 export const getAllHotelsOrderByRate = (req, res) => {
-    oneById().then((results) => {
+    orderByRate().then((results) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
