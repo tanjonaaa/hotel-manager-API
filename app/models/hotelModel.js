@@ -16,10 +16,11 @@ export const oneById = async (id) => {
 //Returns a Promise containing the liste of hotels order by rate
 export const orderByRate = async () => {
     const results = await pool.query(`
-        SELECT * FROM hotel
+        SELECT hotel.*, AVG(rate) as total_rate FROM hotel
             INNER JOIN rating
             ON rating.id_hotel = hotel.id
-            ORDER BY rating.rate DESC;
+            GROUP BY hotel.id
+            ORDER BY total_rate DESC;
     `);
     return results.rows;
 }
