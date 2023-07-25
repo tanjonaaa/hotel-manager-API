@@ -26,3 +26,12 @@ export const getAllHotelsOrderByRate = (req, res) => {
         res.status(500);
     })
 };
+
+
+export const getAllCity = (req, res) => {
+    AllCity().then((results) => {
+       res.status(200).json(results);
+   }).catch((e) => {
+       res.status(500).json({ error: "Failed to fetch reservations." });
+   });
+}

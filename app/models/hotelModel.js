@@ -24,3 +24,14 @@ export const orderByRate = async () => {
     `);
     return results.rows;
 }
+
+
+export const AllCity = async () => {
+    const results = await pool.query(`
+        SELECT h.*, c.name AS city_name
+        FROM hotel h
+        INNER JOIN city c ON h.id_city = c.id
+        GROUP BY  c.name,h.id
+    `);
+    return results.rows;
+}
