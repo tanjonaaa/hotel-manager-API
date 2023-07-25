@@ -8,6 +8,6 @@ export const hotelRouter = express.Router();
 
 hotelRouter.get('/', getAllHotels);
 
-hotelRouter.get('/:id', getOneHotelByItsId);
-
 hotelRouter .get("/rate", getAllHotelsOrderByRate);
+
+hotelRouter.get('/:id', getOneHotelByItsId);
