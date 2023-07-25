@@ -1,11 +1,15 @@
 import express from "express";
 //Controller methods import
 import {
-    getAllHotels, getOneHotelByItsId
+    getAllHotels, getOneHotelByItsId, getAllHotelsOrderByRate
 } from "../controller/hotelController.js";
 
 export const hotelRouter = express.Router();
 
-hotelRouter.get('/', (req, res) => getAllHotels(req, res));
+hotelRouter.get('/', getAllHotels);
 
-hotelRouter.get('/:id', (req, res) => getOneHotelByItsId(req, res));
+hotelRouter.get('/hotel-by-city-ranking', (req, res) => getAllCity(req, res)); 
+
+hotelRouter .get("/rate", getAllHotelsOrderByRate);
+
+hotelRouter.get('/:id', getOneHotelByItsId);
