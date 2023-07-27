@@ -15,8 +15,6 @@ hotelRouter.get('/', getAllHotels);
 
 hotelRouter.get('/hotel-by-city-ranking', getAllCity); 
 
-hotelRouter.get('/hotel-by-city-ranking', getAllCity); 
-
 hotelRouter .get("/rate", avgFloatToInt, getAllHotelsOrderByRate);
 
 hotelRouter.get('/:id', getOneHotelByItsId);
