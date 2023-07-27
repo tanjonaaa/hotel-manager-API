@@ -1,6 +1,6 @@
 //Model methods imports
 import {
-    allHotels, oneById, orderByRate
+    allHotels, oneById, orderByRate , AllCity
 } from "../models/hotelModel.js";
 
 export const getAllHotels = (req, res) => {
@@ -26,3 +26,12 @@ export const getAllHotelsOrderByRate = (req, res) => {
         res.status(500);
     })
 };
+
+
+export const getAllCity = (req, res) => {
+    AllCity().then((results) => {
+       res.status(200).json(results);
+   }).catch((e) => {
+       res.status(500).json({ error: "Failed to fetch reservations." });
+   });
+}
