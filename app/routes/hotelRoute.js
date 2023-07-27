@@ -4,12 +4,17 @@ import {
     getAllHotels, getOneHotelByItsId, getAllHotelsOrderByRate , getAllCity
 } from "../controller/hotelController.js";
 
+// import middelWare
+import {
+    avgFloatToInt
+} from "../middelware/hotelMiddelWare.js";
+
 export const hotelRouter = express.Router();
 
 hotelRouter.get('/', getAllHotels);
 
 hotelRouter.get('/hotel-by-city-ranking', getAllCity); 
 
-hotelRouter .get("/rate", getAllHotelsOrderByRate);
+hotelRouter .get("/rate", avgFloatToInt, getAllHotelsOrderByRate);
 
 hotelRouter.get('/:id', getOneHotelByItsId);
