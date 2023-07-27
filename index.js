@@ -9,6 +9,7 @@ export const app = express();
 //Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(express.static('public'));
 
 //Routers
 app.use('/hotels', hotelRouter);
