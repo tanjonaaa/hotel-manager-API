@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/hotels', hotelRouter);
 
 //Routers : User
-app.use('/Users', userRouter)
+app.use('/users', userRouter)
 
 
 // port listen
