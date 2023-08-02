@@ -30,11 +30,12 @@ export const allRoomAvailaible = async (start, end) => {
 
 // insert
 export const insertRoom = async (room_type, hotel) => {
-    await pool.query(`
+    const result = await pool.query(`
     INSERT INTO room (id_room_type, id_hotel)
     VALUES (
         '${room_type}',
         '${hotel}'
     )
     `);
+    return results.rows
 }
