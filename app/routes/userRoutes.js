@@ -7,3 +7,5 @@ import {
 export const userRouter = express.Router();
 
 userRouter.get('/', getAllUsers);
+
+userRouter.get('/:id',getOneUserByItsId);
