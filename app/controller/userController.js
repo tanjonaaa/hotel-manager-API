@@ -1,6 +1,6 @@
 //Model methods imports
 import {
-    allUsers
+    allUsers,oneUserById
 } from "../models/userModel.js"
 
 export const getAllUsers = (req,res)=>{
