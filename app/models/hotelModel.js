@@ -36,6 +36,7 @@ export const AllCity = async () => {
     return results.rows;
 }
 
+//Update Request
 export const updateHotel = async ({ id, name, address, is_active, id_city }) => {
     const result = await pool.query(`
         UPDATE hotel
