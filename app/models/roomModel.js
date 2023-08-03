@@ -1,6 +1,14 @@
 //Database connection import
 import { pool } from "../../config/connection.js";
 
+//Returns a Promise containing all room in specified room id
+export const roomById = async (id) => {
+    const results = await pool.query(`
+    SELECT * FROM room
+    WHERE id = ${id};
+    `);
+    return results.rows;
+}
 //Returns a Promise containing all room in specified hotels id
 export const allRoom = async (id) => {
     const results = await pool.query(`
@@ -26,4 +34,38 @@ export const allRoomAvailaible = async (start, end) => {
         WHERE indisponibility.room_id IS NULL;
     `);
     return results.rows;
+}
+
+// insert
+export const insertRoom = async ({room_type, hotel}) => {
+    const result = await pool.query(`
+    INSERT INTO room (id_room_type, id_hotel)
+    VALUES (
+        ${room_type},
+        ${hotel}
+    );
+    `);
+    return results.rows
+}
+
+//update
+export const updateRoom = async ({id, room_type, hotel, description, photo}) => {
+    const result = await pool.query(`
+    UPDATE room
+    SET id_room_type = ${room_type},
+            id_hotel = ${hotel},
+            description = '${description}',
+            photo = '${photo}'
+    WHERE id = ${id};
+    `);
+    return results.rows
+}
+
+//delete
+export const deleteRoom = async ({id}) => {
+    const result = await pool.query(`
+    DELETE FROM room
+    WHERE id = ${id};
+    `);
+    return results.rows
 }

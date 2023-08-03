@@ -1,8 +1,6 @@
 import express from "express";
 //Controller methods import
-import {
-    getAllHotels, getOneHotelByItsId, getAllHotelsOrderByRate , getAllCity
-} from "../controller/hotelController.js";
+import * as controller from "../controller/hotelController.js";
 
 // import middelWare
 import {
@@ -11,10 +9,10 @@ import {
 
 export const hotelRouter = express.Router();
 
-hotelRouter.get('/', getAllHotels);
+hotelRouter.get('/', controller.getAllHotels);
 
-hotelRouter.get('/hotel-by-city-ranking', getAllCity); 
+hotelRouter.get('/hotel-by-city-ranking', controller.getAllCity); 
 
-hotelRouter .get("/rate", avgFloatToInt, getAllHotelsOrderByRate);
+hotelRouter .get("/rate", avgFloatToInt, controller.getAllHotelsOrderByRate);
 
-hotelRouter.get('/:id', getOneHotelByItsId);
+hotelRouter.get('/:id', controller.getOneHotelByItsId);
