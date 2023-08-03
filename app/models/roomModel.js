@@ -38,7 +38,7 @@ export const allRoomAvailaible = async (start, end) => {
 
 // insert
 export const insertRoom = async ({room_type, hotel}) => {
-    const result = await pool.query(`
+    const results = await pool.query(`
     INSERT INTO room (id_room_type, id_hotel)
     VALUES (
         ${room_type},
@@ -50,7 +50,7 @@ export const insertRoom = async ({room_type, hotel}) => {
 
 //update
 export const updateRoom = async ({id, room_type, hotel, description, photo}) => {
-    const result = await pool.query(`
+    const results = await pool.query(`
     UPDATE room
     SET id_room_type = ${room_type},
             id_hotel = ${hotel},
@@ -63,7 +63,7 @@ export const updateRoom = async ({id, room_type, hotel, description, photo}) => 
 
 //delete
 export const deleteRoom = async ({id}) => {
-    const result = await pool.query(`
+    const results = await pool.query(`
     DELETE FROM room
     WHERE id = ${id};
     `);
