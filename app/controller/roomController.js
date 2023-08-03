@@ -1,8 +1,8 @@
 //Model methods imports
-import { allRoom, roomById } from "../models/roomModel.js"
+import * as model from "../models/roomModel.js"
 
 export const getAllRoom = (req,res)=>{
-    allRoom(req.params.id).then((results)=>{
+    model.allRoom(req.params.id).then((results)=>{
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
@@ -11,7 +11,7 @@ export const getAllRoom = (req,res)=>{
 }
 
 export const getRoomById = (req,res)=>{
-    roomById(req.params.id).then((results)=>{
+    model.roomById(req.params.id).then((results)=>{
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);

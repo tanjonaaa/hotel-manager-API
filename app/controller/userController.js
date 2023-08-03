@@ -1,10 +1,8 @@
 //Model methods imports
-import {
-    allUsers,oneUserById
-} from "../models/userModel.js"
+import * as model from "../models/userModel.js"
 
 export const getAllUsers = (req,res)=>{
-    allUsers().then((results)=>{
+    model.allUsers().then((results)=>{
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500).json({ error: "Failed to fetch AllCity." });
@@ -12,7 +10,7 @@ export const getAllUsers = (req,res)=>{
 }
 
 export const getOneUserByItsId = (req, res) => {
-    oneUserById(req.params.id).then((results) => {
+    model.oneUserById(req.params.id).then((results) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500).json({ error: "Failed to fetch AllCity." });

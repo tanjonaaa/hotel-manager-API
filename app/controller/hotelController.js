@@ -1,10 +1,8 @@
 //Model methods imports
-import {
-    allHotels, oneById, orderByRate , AllCity 
-} from "../models/hotelModel.js";
+import * as model from "../models/hotelModel.js";
 
 export const getAllHotels = (req, res) => {
-    allHotels().then((results) => {
+    model.allHotels().then((results) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
@@ -12,7 +10,7 @@ export const getAllHotels = (req, res) => {
 }
 
 export const getOneHotelByItsId = (req, res) => {
-    oneById(req.params.id).then((results) => {
+    model.oneById(req.params.id).then((results) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
@@ -20,7 +18,7 @@ export const getOneHotelByItsId = (req, res) => {
 }
 
 export const getAllHotelsOrderByRate = (req, res) => {
-    orderByRate().then((results) => {
+    model.orderByRate().then((results) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
@@ -29,7 +27,7 @@ export const getAllHotelsOrderByRate = (req, res) => {
 
 
 export const getAllCity = (req, res) => {
-    AllCity().then((results) => {
+    model.AllCity().then((results) => {
        res.status(200).json(results);
    }).catch((e) => {
        res.status(500).json({ error: "Failed to fetch AllCity." });

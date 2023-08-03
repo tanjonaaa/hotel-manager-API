@@ -1,11 +1,9 @@
 import express from "express";
 //Controller methods import
-import {
-    getAllUsers,getOneUserByItsId
-} from "../controller/userController.js"
+import * as controller from "../controller/userController.js"
 
 export const userRouter = express.Router();
 
-userRouter.get('/', getAllUsers);
+userRouter.get('/', controller.getAllUsers);
 
-userRouter.get('/:id',getOneUserByItsId);
+userRouter.get('/:id', controller.getOneUserByItsId);
