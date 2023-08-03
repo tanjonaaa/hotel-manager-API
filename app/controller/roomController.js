@@ -18,3 +18,12 @@ export const getRoomById = (req,res)=>{
         throw e
     });
 }
+
+export const insertRoom = (req,res)=>{
+    model.insertRoom(req.body).then(()=>
+        res.status(200)
+    ).catch((e) => {
+        res.status(500)
+        throw e
+    })
+}
