@@ -27,3 +27,12 @@ export const insertRoom = (req,res)=>{
         throw e
     })
 }
+
+export const updateRoom = (req,res)=>{
+    model.updateRoom(req.body).then(()=>
+        res.status(200)
+    ).catch((e) => {
+        res.status(500)
+        throw e
+    })
+}

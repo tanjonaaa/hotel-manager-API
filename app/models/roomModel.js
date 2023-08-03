@@ -47,3 +47,16 @@ export const insertRoom = async ({room_type, hotel}) => {
     `);
     return results.rows
 }
+
+//update
+export const updateRoom = async ({id, room_type, hotel, description, photo}) => {
+    const result = await pool.query(`
+    UPDATE room
+    SET id_room_type = ${room_type},
+            id_hotel = ${hotel},
+            description = '${description}',
+            photo = '${photo}'
+    WHERE id = ${id};
+    `);
+    return results.rows
+}
