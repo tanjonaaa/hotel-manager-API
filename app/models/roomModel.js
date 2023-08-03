@@ -1,6 +1,14 @@
 //Database connection import
 import { pool } from "../../config/connection.js";
 
+//Returns a Promise containing all room in specified room id
+export const roomById = async (id) => {
+    const results = await pool.query(`
+    SELECT * FROM room
+    WHERE id = ${id};
+    `);
+    return results.rows;
+}
 //Returns a Promise containing all room in specified hotels id
 export const allRoom = async (id) => {
     const results = await pool.query(`
