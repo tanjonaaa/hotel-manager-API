@@ -15,4 +15,6 @@ hotelRouter.get('/hotel-by-city-ranking', controller.getAllCity);
 
 hotelRouter .get("/rate", avgFloatToInt, controller.getAllHotelsOrderByRate);
 
+hotelRouter.put('/update/:id', controller.updateOneHotel);
+
 hotelRouter.get('/:id', controller.getOneHotelByItsId);

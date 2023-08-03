@@ -33,3 +33,11 @@ export const getAllCity = (req, res) => {
        res.status(500).json({ error: "Failed to fetch AllCity." });
    });
 }
+
+export const updateOneHotel = (req, res) => {
+    const { id, name, address, is_active, id_city } = req.body;
+
+    updateOneHotel({ id, name, address, is_active, id_city })
+        .then(() => res.status(200).json({ message: "Hotel updated successfully." }))
+        .catch((e) => res.status(500).json({ error: "Error updating hotel." }));
+};
