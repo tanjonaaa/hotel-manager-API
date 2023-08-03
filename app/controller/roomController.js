@@ -36,3 +36,12 @@ export const updateRoom = (req,res)=>{
         throw e
     })
 }
+
+export const deleteRoom = (req,res)=>{
+    model.deleteRoom(req.body).then(()=>
+        res.status(200)
+    ).catch((e) => {
+        res.status(500)
+        throw e
+    })
+}

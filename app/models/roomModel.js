@@ -60,3 +60,12 @@ export const updateRoom = async ({id, room_type, hotel, description, photo}) => 
     `);
     return results.rows
 }
+
+//delete
+export const deleteRoom = async ({id}) => {
+    const result = await pool.query(`
+    DELETE FROM room
+    WHERE id = ${id};
+    `);
+    return results.rows
+}
