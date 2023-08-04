@@ -33,3 +33,11 @@ export const getAllCity = (req, res) => {
        res.status(500).json({ error: "Failed to fetch AllCity." });
    });
 }
+
+export const getCountOfHotelInCity = (req, res) => {
+    model.countHotelInCity(req.body.id_city).then((results) => {
+       res.status(200).json(results);
+   }).catch((e) => {
+       res.status(500).json({ error: "Failed to fetch AllCity." });
+   });
+}

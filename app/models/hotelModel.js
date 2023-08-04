@@ -35,3 +35,11 @@ export const AllCity = async () => {
     `);
     return results.rows;
 }
+
+export const countHotelInCity = async (id) => {
+    const results = await pool.query(`
+        SELECT count(*)
+        FROM hotel WHERE hotel.id_city = ${id}
+    `);
+    return results.rows;
+}
