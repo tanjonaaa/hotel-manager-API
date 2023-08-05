@@ -36,6 +36,20 @@ export const AllCity = async () => {
     return results.rows;
 }
 
+//Update Request
+export const updateHotel = async ({ id, name, address, is_active, id_city }) => {
+    const result = await pool.query(`
+        UPDATE hotel
+        SET name = $1,
+            address = $2,
+            is_active = $3,
+            id_city = $4
+        WHERE id = $5;
+    `, [name, address, is_active, id_city, id]);
+
+    return result.rows;
+};
+
 export const countHotelInCity = async (id) => {
     const results = await pool.query(`
         SELECT count(*)
