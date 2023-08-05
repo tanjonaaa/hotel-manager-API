@@ -43,7 +43,7 @@ export const updateOneHotel = (req, res) => {
 };
 
 export const getCountOfHotelInCity = (req, res) => {
-    model.countHotelInCity(req.body.id_city).then((results) => {
+    model.countHotelInCity(req.params.id_city).then((results) => {
        res.status(200).json(results);
    }).catch((e) => {
        res.status(500).json({ error: "Failed to fetch AllCity." });

@@ -10,7 +10,7 @@ import {
 export const hotelRouter = express.Router();
 
 hotelRouter.get('/', controller.getAllHotels);
-hotelRouter.post('/count', controller.getCountOfHotelInCity);
+hotelRouter.get('/count/:id_hotel', controller.getCountOfHotelInCity);
 
 hotelRouter.get('/hotel-by-city-ranking', controller.getAllCity); 
 

@@ -65,7 +65,7 @@ export const updateRoom = async ({id, room_type, hotel, description, photo}) => 
 export const deleteRoom = async ({id}) => {
     const results = await pool.query(`
     DELETE FROM room
-    WHERE id = ${id};
-    `);
+    WHERE id = $1;
+    `, [id]);
     return results.rows
 }
