@@ -1,4 +1,5 @@
 //Model methods imports
+import e from "cors";
 import * as model from "../models/hotelModel.js";
 
 export const getAllHotels = (req, res) => {
@@ -43,11 +44,14 @@ export const updateOneHotel = (req, res) => {
 };
 
 export const getHotelWithAvailableRooms = (req, res) => {
-    const {id_city, start_date, end_date} = req.body;
+    const {city_name, start_date, end_date} = req.body;
 
-    model.availableHotels(id_city, start_date, end_date)
+    model.availableHotels(city_name, start_date, end_date)
         .then((results) => res.status(200).json(results))
-        .catch((e) => res.status(500));
+        .catch((e) => {
+            res.status(500).json("erreur");
+            console.error(e);
+        });
 }
 
 export const getCountOfHotelInCity = (req, res) => {
