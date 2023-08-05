@@ -50,6 +50,14 @@ export const updateHotel = async ({ id, name, address, is_active, id_city }) => 
     return result.rows;
 };
 
+export const countHotelInCity = async (id) => {
+    const results = await pool.query(`
+        SELECT count(*)
+        FROM hotel WHERE hotel.id_city = $1
+    `, [id]);
+    return results.rows;
+}
+
 export const availableHotels = async (id_city, start_date, end_date) => {
     const hotels = await pool.query(`
     SELECT DISTINCT h.*
