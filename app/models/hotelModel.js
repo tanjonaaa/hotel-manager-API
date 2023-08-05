@@ -1,9 +1,9 @@
 //Database connection import
-import {pool} from "../../config/connection.js";
+import { pool } from "../../config/connection.js";
 
 //Returns a Promise containing our hotels
 export const allHotels = async () => {
-    const results = await pool.query('SELECT * FROM hotel');
+    const results = await pool.query('SELECT * FROM hotel ORDER BY id');
     return results.rows;
 }
 
@@ -49,3 +49,20 @@ export const updateHotel = async ({ id, name, address, is_active, id_city }) => 
 
     return result.rows;
 };
+
+export const availableHotels = async (id_city, start_date, end_date) => {
+    const hotels = await pool.query(`
+    SELECT DISTINCT h.*
+    FROM hotel h
+    WHERE h.id NOT IN (
+        SELECT DISTINCT r.id_hotel
+        FROM room r
+        JOIN reservation res ON r.id = res.room_id
+        WHERE (res.start_time <= $2 AND res.end_time >= $2)
+            OR (res.start_time <= $3 AND res.end_time >= $3)
+            OR (res.start_time >= $2 AND res.end_time <= $3)
+    ) AND h.id_city = $1    
+    `, [id_city, start_date, end_date]);
+
+    return hotels.rows;
+}

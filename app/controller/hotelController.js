@@ -37,7 +37,15 @@ export const getAllCity = (req, res) => {
 export const updateOneHotel = (req, res) => {
     const { id, name, address, is_active, id_city } = req.body;
 
-    updateOneHotel({ id, name, address, is_active, id_city })
+    model.updateHotel({ id, name, address, is_active, id_city })
         .then(() => res.status(200).json({ message: "Hotel updated successfully." }))
         .catch((e) => res.status(500).json({ error: "Error updating hotel." }));
 };
+
+export const getHotelWithAvailableRooms = (req, res) => {
+    const {id_city, start_date, end_date} = req.body;
+
+    model.availableHotels(id_city, start_date, end_date)
+        .then((results) => res.status(200).json(results))
+        .catch((e) => res.status(500));
+}
