@@ -1,8 +1,9 @@
 //Imports
 import express from "express";
-import {hotelRouter} from "./app/routes/hotelRoute.js";
+import { hotelRouter } from "./app/routes/hotelRoute.js";
 import { userRouter } from "./app/routes/userRoutes.js";
 import { roomRouter } from "./app/routes/roomRoute.js";
+import { reservationRouter } from "./app/routes/reservationRoute.js";
 import cors from "cors";
 
 
@@ -22,6 +23,9 @@ app.use('/users', userRouter)
 
 //Routers : room
 app.use('/room', roomRouter)
+
+//Routers : reservation
+app.use('/reservation', reservationRouter)
 
 
 // port listen
