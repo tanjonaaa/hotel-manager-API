@@ -93,3 +93,16 @@ export const deleteRoom = async ({id}) => {
     `, [id]);
     return results.rows
 }
+
+//search
+export const searchRoomByOption = async ({id, name}) => {
+    const results = await pool.query(`
+    SELECT room.*, room_option.id as room_option_id, room_option.name as room_option_name FROM room_option
+      INNER JOIN have_room_option
+      ON have_room_option.id_room_option = room_option.id
+      INNER JOIN room
+      ON have_room_option.id_room = room.id
+      WHERE room_option.id = 1 OR room_option.name ILIKE '%m%';
+    `, [id, name]);
+    return results.rows
+}

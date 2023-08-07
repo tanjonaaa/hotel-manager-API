@@ -54,3 +54,12 @@ export const deleteRoom = (req,res)=>{
         throw e
     })
 }
+
+export const searchRoomByOption = (req,res)=>{
+    model.searchRoomByOption(req.body).then(()=>
+        res.status(200)
+    ).catch((e) => {
+        res.status(500)
+        throw e
+    })
+}

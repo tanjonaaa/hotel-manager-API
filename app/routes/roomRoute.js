@@ -8,6 +8,8 @@ roomRouter.post('/insert', controller.insertRoom);
 roomRouter.put('/update', controller.updateRoom);
 roomRouter.delete('/delete', controller.deleteRoom);
 
+roomRouter.post('/search', controller.searchRoomByOption)
+
 roomRouter.get('/hotel/:id', controller.getAllRoom);
 roomRouter.get('/:id', controller.getRoomById);
 roomRouter.get('/group_by_hotel/:id',controller.getallRoomInOneHotel);
