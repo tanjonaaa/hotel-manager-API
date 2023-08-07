@@ -10,8 +10,8 @@ export const insertReservation = (req,res)=>{
     })
 }
 
-export const getAllReservations = (req,res)=>{
-    model.allReservations(req.params.id).then((results)=>{
+export const getOneReservations = (req,res)=>{
+    model.oneReservations(req.params.id).then((results)=>{
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
