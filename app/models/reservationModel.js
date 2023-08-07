@@ -45,5 +45,10 @@ export const insertReservation = async ({id,
         is_paid,
         is_cancelled,
         penalty_rate]);
-    return results.rows
+    return result.rows
+}
+
+export const oneReservations = async (id) => {
+    const results = await pool.query('SELECT * FROM reservation WHERE id = $1', [id]);
+    return results.rows;
 }
