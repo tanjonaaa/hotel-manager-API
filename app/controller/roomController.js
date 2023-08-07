@@ -30,8 +30,8 @@ export const getallRoomInOneHotel = (req,res) => {
 
 export const getAllUnservedRoom = (req,res) => {
     const id = req.params.id;
-    const start = req.query.start;
-    const end = req.query.end;
+    const start = req.query.start_date;
+    const end = req.query.end_date;
 
 
     model.AllRoomUnserved(id ,start ,end).then((results)=>{
