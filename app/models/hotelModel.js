@@ -59,19 +59,15 @@ export const countHotelInCity = async (id) => {
 }
 
 export const availableHotels = async (city_name, start_date, end_date) => {
-    const pattern = '%'+city_name+'%';
+    const pattern = '%' + city_name + '%';
     const hotels = await pool.query(`
-    SELECT DISTINCT h.*
+    SELECT DISTINCT h.id, h.name
     FROM hotel h
-    INNER JOIN city ON h.id_city = city.id 
-    WHERE h.id NOT IN (
-        SELECT DISTINCT r.id_hotel
-        FROM room r
-        JOIN reservation res ON r.id = res.room_id
-        WHERE (res.start_time <= $2 AND res.end_time >= $2)
-            OR (res.start_time <= $3 AND res.end_time >= $3)
-            OR (res.start_time >= $2 AND res.end_time <= $3)
-    ) AND city.name ILIKE $1    
+    INNER JOIN city c ON c.id = h.id_city
+    INNER JOIN room r ON h.id = r.id_hotel
+    LEFT JOIN reservation rv ON r.id = rv.room_id
+    WHERE (rv.id IS NULL OR (rv.start_time > $2 OR rv.end_time < $3))
+    AND c.name ILIKE $1
     `, [pattern, start_date, end_date]);
 
     return hotels.rows;
