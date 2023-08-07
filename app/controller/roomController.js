@@ -43,8 +43,8 @@ export const getAllUnservedRoom = (req,res) => {
 }
 
 export const insertRoom = (req,res)=>{
-    model.insertRoom(req.body).then(()=>
-        res.status(200)
+    model.insertRoom(req.body).then((results)=>
+        res.status(200).json(results)
     ).catch((e) => {
         res.status(500)
         throw e
@@ -52,8 +52,8 @@ export const insertRoom = (req,res)=>{
 }
 
 export const updateRoom = (req,res)=>{
-    model.updateRoom(req.body).then(()=>
-        res.status(200)
+    model.updateRoom(req.body).then((results)=>
+        res.status(200).json(results)
     ).catch((e) => {
         res.status(500)
         throw e
@@ -61,8 +61,17 @@ export const updateRoom = (req,res)=>{
 }
 
 export const deleteRoom = (req,res)=>{
-    model.deleteRoom(req.body).then(()=>
-        res.status(200)
+    model.deleteRoom(req.body).then((results)=>
+        res.status(200).json(results)
+    ).catch((e) => {
+        res.status(500)
+        throw e
+    })
+}
+
+export const searchRoomByOption = (req,res)=>{
+    model.searchRoomByOption(req.body).then((results)=>
+        res.status(200).json(results)
     ).catch((e) => {
         res.status(500)
         throw e
