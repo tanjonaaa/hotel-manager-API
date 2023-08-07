@@ -28,6 +28,20 @@ export const getallRoomInOneHotel = (req,res) => {
     });
 }
 
+export const getAllUnservedRoom = (req,res) => {
+    const id = req.params.id;
+    const start = req.query.start;
+    const end = req.query.end;
+
+
+    model.AllRoomUnserved(id ,start ,end).then((results)=>{
+        res.status(200).json(results); 
+    }).catch((e) => {
+        res.status(500);
+        throw e
+    });
+}
+
 export const insertRoom = (req,res)=>{
     model.insertRoom(req.body).then(()=>
         res.status(200)
