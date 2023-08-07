@@ -18,6 +18,28 @@ export const allRoom = async (id) => {
     return results.rows;
 }
 
+export const allRoomInOneHotel = async (id) => {
+    const results = await pool.query(`
+        SELECT
+          room.* ,
+          room_type.name AS room_type_name,
+          room_type.base_price + SUM(room_option.price) AS total_price
+        FROM
+          room
+        INNER JOIN
+          room_type ON room.id_room_type = room_type.id
+        LEFT JOIN
+          have_room_option ON room.id = have_room_option.id_room
+        LEFT JOIN
+          room_option ON have_room_option.id_room_option = room_option.id
+        WHERE
+          room.id_hotel = ${id}
+        GROUP BY
+          room.id, room_type.name, room_type.base_price;
+    `)
+    return results.rows;
+}
+
 //Returns a Promise containing all room in specified periode
 export const allRoomAvailaible = async (start, end) => {
     const results = await pool.query(`
@@ -35,6 +57,8 @@ export const allRoomAvailaible = async (start, end) => {
     `);
     return results.rows;
 }
+
+
 
 // insert
 export const insertRoom = async ({room_type, hotel}) => {

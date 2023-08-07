@@ -19,6 +19,15 @@ export const getRoomById = (req,res)=>{
     });
 }
 
+export const getallRoomInOneHotel = (req,res) => {
+    model.allRoomInOneHotel(req.params.id).then((results)=>{
+        res.status(200).json(results);
+    }).catch((e) => {
+        res.status(500);
+        throw e
+    });
+}
+
 export const insertRoom = (req,res)=>{
     model.insertRoom(req.body).then(()=>
         res.status(200)
