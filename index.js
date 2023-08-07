@@ -6,6 +6,7 @@ import { roomRouter } from "./app/routes/roomRoute.js";
 import { reservationRouter } from "./app/routes/reservationRoute.js";
 import cors from "cors";
 import {cityRouter} from "./app/routes/cityRoute.js";
+import { room_optionRouter } from "./app/routes/room_optionRoute.js";
 
 
 //Variable declaration
@@ -32,6 +33,9 @@ app.use('/reservation', reservationRouter)
 
 //Routers : cities
 app.use('/city', cityRouter)
+
+//Routers : room_option
+app.use('/room_option' , room_optionRouter);
 
 
 // port listen
