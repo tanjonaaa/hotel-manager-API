@@ -8,7 +8,7 @@ export const AllRoomOptions = async() => {
 
 export const allOptionsOfARoom = async (id) => {
     const results = await pool.query(`
-        SELECT r_o.name FROM room r
+        SELECT r_o.id, r_o.name FROM room r
         LEFT JOIN have_room_option h_r_o ON r.id = h_r_o.id_room
         INNER JOIN room_option as r_o ON r_o.id = h_r_o.id_room_option
         WHERE r.id = $1

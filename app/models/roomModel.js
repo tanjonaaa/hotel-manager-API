@@ -3,24 +3,24 @@ import { pool } from "../../config/connection.js";
 
 //Returns a Promise containing all room in specified room id
 export const roomById = async (id) => {
-    const results = await pool.query(`
+  const results = await pool.query(`
     SELECT * FROM room
     WHERE id = ${id};
     `);
-    return results.rows;
+  return results.rows;
 }
 //Returns a Promise containing all room in specified hotels id
 export const allRoom = async (id) => {
-    const results = await pool.query(`
+  const results = await pool.query(`
     SELECT * FROM room
     WHERE id_hotel = ${id};
     `);
-    return results.rows;
+  return results.rows;
 }
 
 
 export const allRoomInOneHotel = async (id) => {
-    const results = await pool.query(`
+  const results = await pool.query(`
         SELECT
           room.* ,
           room_type.name AS room_type_name,
@@ -38,11 +38,11 @@ export const allRoomInOneHotel = async (id) => {
         GROUP BY
           room.id, room_type.name, room_type.base_price;
     `)
-    return results.rows;
+  return results.rows;
 }
 
 //Returns a Promise containing all unserved room
-export const AllRoomUnserved = async(id,start,end) => {
+export const AllRoomUnserved = async (id, start, end) => {
   const results = await pool.query(`
         SELECT
           room.*,
@@ -74,7 +74,7 @@ export const AllRoomUnserved = async(id,start,end) => {
 
 //Returns a Promise containing all room in specified periode
 export const allRoomAvailaible = async (start, end) => {
-    const results = await pool.query(`
+  const results = await pool.query(`
     SELECT room.*
     FROM (
         SELECT *FROM reservation
@@ -87,26 +87,26 @@ export const allRoomAvailaible = async (start, end) => {
         ON room.id = indisponibility.room_id
         WHERE indisponibility.room_id IS NULL;
     `);
-    return results.rows;
+  return results.rows;
 }
 
 
 
 // insert
-export const insertRoom = async ({room_type, hotel}) => {
-    const results = await pool.query(`
+export const insertRoom = async ({ room_type, hotel }) => {
+  const results = await pool.query(`
     INSERT INTO room (id_room_type, id_hotel)
     VALUES (
         ${room_type},
         ${hotel}
     );
     `);
-    return results.rows
+  return results.rows
 }
 
 //update
-export const updateRoom = async ({id, room_type, hotel, description, photo}) => {
-    const results = await pool.query(`
+export const updateRoom = async ({ id, room_type, hotel, description, photo }) => {
+  const results = await pool.query(`
     UPDATE room
     SET id_room_type = ${room_type},
             id_hotel = ${hotel},
@@ -114,37 +114,40 @@ export const updateRoom = async ({id, room_type, hotel, description, photo}) => 
             photo = '${photo}'
     WHERE id = ${id};
     `);
-    return results.rows
+  return results.rows
 }
 
 //delete
-export const deleteRoom = async ({id}) => {
-    const results = await pool.query(`
+export const deleteRoom = async ({ id }) => {
+  const results = await pool.query(`
     DELETE FROM room
     WHERE id = $1;
     `, [id]);
-    return results.rows
+  return results.rows
 }
 
 //search
-export const searchRoomByOption = async ({options}) => {
-  let option = []
-    for (const attente of options) {
-      if ((attente.id == null || attente.id == undefined) && (attente.name != null || attente.name != undefined))
-        option.push(`(room_option.name ILIKE '%${attente.name}%')`)
-      else if ((attente.id != null || attente.id != undefined) && (attente.name == null || attente.name == undefined))
-        option.push(`(room_option.id = ${attente.id})`)
-      else if ((attente.id != null || attente.id != undefined) && (attente.name != null || attente.name != undefined))
-        option.push(`(room_option.id = ${attente.id} AND room_option.name ILIKE '%${attente.name}%')`)
-      else{}
-    }
-    const results = await pool.query(`
-    SELECT room.*, room_option.id as room_option_id, room_option.name as room_option_name FROM room_option
-      INNER JOIN have_room_option
-      ON have_room_option.id_room_option = room_option.id
-      INNER JOIN room
-      ON have_room_option.id_room = room.id
-      WHERE ${option.join(" OR ")};
-    `);
-    return results.rows
+export const searchRoomByOption = async ({ options }) => {
+  let newOptions = options.map(option => option.id);
+  //   for (const attente of options) {
+  //     if ((attente.id == null || attente.id == undefined) && (attente.name != null || attente.name != undefined))
+  //       option.push(`(room_option.name ILIKE '%${attente.name}%')`)
+  //     else if ((attente.id != null || attente.id != undefined) && (attente.name == null || attente.name == undefined))
+  //       option.push(`(room_option.id = ${attente.id})`)
+  //     else if ((attente.id != null || attente.id != undefined) && (attente.name != null || attente.name != undefined))
+  //       option.push(`(room_option.id = ${attente.id} AND room_option.name ILIKE '%${attente.name}%')`)
+  //     else{}
+  //   }
+
+  const placeholders = newOptions.map((_, idx) => `$${idx + 1}`).join(',');
+  const queryText = `SELECT r.* FROM room r 
+                     JOIN have_room_option hro ON r.id = hro.id_room 
+                     WHERE hro.id_room_option = ANY(ARRAY[${placeholders}]::int[]) 
+                     GROUP BY r.id 
+                     HAVING array_agg(hro.id_room_option) @> ARRAY[${placeholders}]::int[]`;
+
+  const result = await pool.query(queryText, newOptions);
+
+  return result.rows;
+
 }
