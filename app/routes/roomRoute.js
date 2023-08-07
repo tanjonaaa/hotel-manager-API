@@ -10,3 +10,4 @@ roomRouter.delete('/delete', controller.deleteRoom);
 
 roomRouter.get('/hotel/:id', controller.getAllRoom);
 roomRouter.get('/:id', controller.getRoomById);
+roomRouter.get('/group_by_hotel/:id',controller.getallRoomInOneHotel);
