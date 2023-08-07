@@ -102,7 +102,7 @@ export const searchRoomByOption = async ({id, name}) => {
       ON have_room_option.id_room_option = room_option.id
       INNER JOIN room
       ON have_room_option.id_room = room.id
-      WHERE room_option.id = 1 OR room_option.name ILIKE '%m%';
-    `, [id, name]);
+      WHERE room_option.id = $1 OR room_option.name ILIKE '%${name}%';
+    `, [id]);
     return results.rows
 }
