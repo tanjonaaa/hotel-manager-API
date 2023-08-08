@@ -39,7 +39,7 @@ export const insertReservation = async ({id,
         $9,
         $10,
         $11,
-        $12,}
+        $12
     );
     `, [id,
         user_id,
