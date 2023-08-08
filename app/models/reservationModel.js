@@ -2,7 +2,7 @@
 import { pool } from "../../config/connection.js";
 
 // insert
-export const insertReservation = async ({id,
+export const insertReservation = async ({
     user_id,
     handler_id,
     room_id,
@@ -10,12 +10,9 @@ export const insertReservation = async ({id,
     start_time,
     end_time,
     special_requests,
-    payment_method,
-    is_paid,
-    is_cancelled,
-    penalty_rate}) => {
+    payment_method}) => {
     const result = await pool.query(`
-    INSERT INTO reservation (id,
+    INSERT INTO reservation (
         user_id,
         handler_id,
         room_id,
@@ -23,10 +20,7 @@ export const insertReservation = async ({id,
         start_time,
         end_time,
         special_requests,
-        payment_method,
-        is_paid,
-        is_cancelled,
-        penalty_rate
+        payment_method
     ) VALUES (
         $1,
         $2,
@@ -35,24 +29,16 @@ export const insertReservation = async ({id,
         $5,
         $6,
         $7,
-        $8,
-        $9,
-        $10,
-        $11,
-        $12
+        $8
     );
-    `, [id,
-        user_id,
+    `, [user_id,
         handler_id,
         room_id,
         conference_room_id,
         start_time,
         end_time,
         special_requests,
-        payment_method,
-        is_paid,
-        is_cancelled,
-        penalty_rate]);
+        payment_method]);
     return result.rows
 }
 
