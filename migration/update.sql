@@ -8,3 +8,5 @@ ALTER TABLE room ADD COLUMN IF NOT EXISTS description text default 'Lorem ipsum 
     vero assumenda cum cupiditate architecto aspernatur,
     molestiae quas velit ea sint repudiandae.
     avec piscine';
+
+ALTER TABLE city ADD COLUMN IF NOT EXISTS photo varchar(300);
