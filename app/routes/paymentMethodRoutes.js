@@ -2,8 +2,8 @@ import express from "express";
 //Controller methods import
 import * as controller from "../controller/paymentMethodController.js"
 
-export const userRouter = express.Router();
+export const paymentMethodRouter = express.Router();
 
-userRouter.get('/', controller.getAllPaymentMethod);
+paymentMethodRouter.get('/', controller.getAllPaymentMethod);
 
-userRouter.get('/:id', controller.getOnePaymentMethodByItsId);
+paymentMethodRouter.get('/:id', controller.getOnePaymentMethodByItsId);

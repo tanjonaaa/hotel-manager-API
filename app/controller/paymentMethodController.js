@@ -6,6 +6,7 @@ export const getAllPaymentMethod = (req,res)=>{
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
+        throw e;
     });
 }
 
@@ -14,6 +15,7 @@ export const getOnePaymentMethodByItsId = (req, res) => {
         res.status(200).json(results);
     }).catch((e) => {
         res.status(500);
+        throw e;
     })
 }
 
