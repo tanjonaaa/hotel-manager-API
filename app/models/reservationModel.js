@@ -3,7 +3,6 @@ import { pool } from "../../config/connection.js";
 
 // insert
 export const insertReservation = async ({id,
-    creation_timestamp,
     user_id,
     handler_id,
     room_id,
@@ -17,7 +16,6 @@ export const insertReservation = async ({id,
     penalty_rate}) => {
     const result = await pool.query(`
     INSERT INTO reservation (id,
-        creation_timestamp,
         user_id,
         handler_id,
         room_id,
@@ -41,11 +39,9 @@ export const insertReservation = async ({id,
         $9,
         $10,
         $11,
-        $12,
-        $13}
+        $12,}
     );
     `, [id,
-        creation_timestamp,
         user_id,
         handler_id,
         room_id,
