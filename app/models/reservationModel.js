@@ -61,4 +61,14 @@ export const oneReservations = async (id) => {
     return results.rows;
 }
 
-export const 
+export const ReservationAvailability = async(id,start,end) => {
+    const results = await pool.query(`        
+        SELECT *
+        FROM reservation
+        WHERE room_id = ${id}
+            AND start_time >= ${start}
+            AND end_time <= ${end};
+    `)
+    return results.rows
+}
+
