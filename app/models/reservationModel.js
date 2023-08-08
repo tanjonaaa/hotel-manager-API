@@ -16,7 +16,7 @@ export const insertReservation = async ({id,
     is_cancelled,
     penalty_rate}) => {
     const result = await pool.query(`
-    INSERT INTO room (id,
+    INSERT INTO reservation (id,
         creation_timestamp,
         user_id,
         handler_id,
