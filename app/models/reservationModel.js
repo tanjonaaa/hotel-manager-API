@@ -10,10 +10,7 @@ export const insertReservation = async ({id,
     start_time,
     end_time,
     special_requests,
-    payment_method,
-    is_paid,
-    is_cancelled,
-    penalty_rate}) => {
+    payment_method}) => {
     const result = await pool.query(`
     INSERT INTO reservation (id,
         user_id,
@@ -23,10 +20,7 @@ export const insertReservation = async ({id,
         start_time,
         end_time,
         special_requests,
-        payment_method,
-        is_paid,
-        is_cancelled,
-        penalty_rate
+        payment_method
     ) VALUES (
         $1,
         $2,
@@ -36,10 +30,7 @@ export const insertReservation = async ({id,
         $6,
         $7,
         $8,
-        $9,
-        $10,
-        $11,
-        $12
+        $9
     );
     `, [id,
         user_id,
@@ -49,10 +40,7 @@ export const insertReservation = async ({id,
         start_time,
         end_time,
         special_requests,
-        payment_method,
-        is_paid,
-        is_cancelled,
-        penalty_rate]);
+        payment_method]);
     return result.rows
 }
 
